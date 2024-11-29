@@ -1,4 +1,7 @@
 from src.game import Game
 
 # run no loop principal
-Game.Run()
+if __name__ == "__main__":
+    game = Game()
+    game.run()
+

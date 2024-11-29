@@ -1,26 +1,26 @@
 import pygame
-
-from src.settings import LARGURA_TELA, ALTURA_TELA
+from .principal.world import World  # Certifique-se de que o caminho esteja correto
+from .settings import LARGURA_TELA, ALTURA_TELA, FPS
 
 pygame.init()
+pygame.display.set_caption("Meu Jogo")
 screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 clock = pygame.time.Clock()
 
-# Loop principal do jogo
-running = True
+class Game:
+    def __init__(self):
+        self.world = World(screen)
 
-class Game():
-    def Run():
-      running = True
-      while running:
-          for event in pygame.event.get():
-              if event.type == pygame.QUIT:
-                  running = False
+    def run(self):
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
 
-          
-          screen.fill((0, 0, 0)) # background preto
-          # tile_map.draw(screen)
-          pygame.display.flip()
-          clock.tick(60)
+            self.world.DrawMap()  # Desenha o mundo
 
-      pygame.quit()
+            pygame.display.flip()  # Atualiza a tela
+            clock.tick(FPS)  # Limita a 60 FPS
+
+        pygame.quit()
